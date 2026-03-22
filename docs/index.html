@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 8 - Global Strategy Concepts</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>Global Strategy Concepts</h1>
+    
+    <h2>Entry Modes Analysis</h2>
+    <p>Explore different entry modes for global strategy in this section.</p>
+
+    <h2>Trade Explorer</h2>
+    <p>Check trade statistics for different countries using the REST Countries API.</p>
+    <button onclick="loadCountries()">Load Countries</button>
+    <div id="countries"></div>
+
+    <h2>Currency Converter</h2>
+    <p>Convert currencies using the Exchangerate API.</p>
+    <input type="text" id="amount" placeholder="Amount">
+    <select id="currency"></select>
+    <button onclick="convertCurrency()">Convert</button>
+    <div id="conversionResult"></div>
+
+    <h2>Porter's Diamond Analysis</h2>
+    <p>Analyze the competitive advantage of nations using Porter’s Diamond framework.</p>
+    
+    <script>
+        // Load countries for trade explorer
+        function loadCountries() {
+            axios.get('https://restcountries.com/v3.1/all')
+                .then(response => {
+                    const countries = response.data.map(country => country.name.common).join(', ');
+                    document.getElementById('countries').innerText = countries;
+                })
+                .catch(error => console.error('Error fetching countries:', error));
+        }
+
+        // Currency Converter logic
+        function convertCurrency() {
+            const amount = document.getElementById('amount').value;
+            const currency = document.getElementById('currency').value;
+            axios.get(`https://api.exchangerate-api.com/v4/latest/${currency}`)
+                .then(response => {
+                    const rate = response.data.rates.USD; // Example: converting to USD
+                    const convertedAmount = amount * rate;
+                    document.getElementById('conversionResult').innerText = `Converted Amount: $${convertedAmount}`;
+                })
+                .catch(error => console.error('Error with currency conversion:', error));
+        }
+        
+        // Fetch and load currency options
+        (function() {
+            axios.get('https://api.exchangerate-api.com/v4/latest/USD')
+                .then(response => {
+                    const select = document.getElementById('currency');
+                    Object.keys(response.data.rates).forEach(currencyCode => {
+                        const option = document.createElement('option');
+                        option.value = currencyCode;
+                        option.innerText = currencyCode;
+                        select.appendChild(option);
+                    });
+                });
+        })();
+    </script>
+</body>
+</html>
