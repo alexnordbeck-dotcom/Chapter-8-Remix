@@ -1,0 +1,1 @@
+{\n  "name": "chapter-8-remix",\n  "version": "1.0.0",\n  "private": true,\n  "dependencies": {\n    "@remix-run/react": "latest",\n    "@remix-run/serve": "latest",\n    "react": "latest",\n    "react-dom": "latest"\n  },\n  "scripts": {\n    "dev": "remix dev",\n    "build": "remix build",\n    "start": "remix start"\n  },\n  "remix": {\n    "devServer": "remix dev"\n  }\n}
