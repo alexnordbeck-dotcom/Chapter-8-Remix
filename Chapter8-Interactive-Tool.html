@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 8 Interactive Tool</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
+</head>
+<body>
+
+    <div class="tabs">
+        <button class="tab-button" onclick="openTab(event, 'entryModes')">Entry Modes Analysis</button>
+        <button class="tab-button" onclick="openTab(event, 'tradeExplorer')">Global Trade Explorer</button>
+        <button class="tab-button" onclick="openTab(event, 'exchangeRates')">Exchange Rates Converter</button>
+        <button class="tab-button" onclick="openTab(event, 'countryAnalysis')">Country Analysis</button>
+    </div>
+
+    <div id="entryModes" class="tab-content">
+        <h2>Entry Modes Analysis</h2>
+        <p>Analyze various entry modes for global business.</p>
+        <!-- Interactive elements for analysis -->
+    </div>
+
+    <div id="tradeExplorer" class="tab-content" style="display:none;">
+        <h2>Global Trade Explorer</h2>
+        <p>Explore trade data between countries.</p>
+        <!-- Interactive elements for trade exploration -->
+    </div>
+
+    <div id="exchangeRates" class="tab-content" style="display:none;">
+        <h2>Exchange Rates Converter</h2>
+        <form id="conversion-form">
+            <input type="number" id="amount" placeholder="Amount">
+            <select id="currency-from">
+                <!-- Currency options dynamic -->
+            </select>
+            <select id="currency-to">
+                <!-- Currency options dynamic -->
+            </select>
+            <button type="submit">Convert</button>
+        </form>
+        <p id="conversion-result"></p>
+    </div>
+
+    <div id="countryAnalysis" class="tab-content" style="display:none;">
+        <h2>Country Analysis using Porter's Diamond</h2>
+        <p>Analyze countries based on Porter's Diamond framework.</p>
+        <!-- Interactive elements for country analysis -->
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
